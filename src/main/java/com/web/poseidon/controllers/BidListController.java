@@ -1,6 +1,8 @@
 package com.web.poseidon.controllers;
 
 import com.web.poseidon.domain.BidList;
+import com.web.poseidon.repositories.BidListRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,10 +17,13 @@ import javax.validation.Valid;
 @Controller
 public class BidListController {
     // TODO: Inject Bid service
+    @Autowired
+    BidListRepository bidListRepository;
 
     @RequestMapping("/bidList/list")
     public String home(Model model)
     {
+        model.addAttribute("bidList", bidListRepository.findAll());
         // TODO: call service find all bids to show to the view
         return "bidList/list";
     }
