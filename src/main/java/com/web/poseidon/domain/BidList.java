@@ -18,6 +18,8 @@ import java.sql.Timestamp;
 public class BidList {
 
     @Id
+    @NotNull
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "TINYINT")
     Integer BidListId;
