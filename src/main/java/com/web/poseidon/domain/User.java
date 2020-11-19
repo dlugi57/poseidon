@@ -1,20 +1,38 @@
 package com.web.poseidon.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+@Data
 @Entity
-@Table(name = "users")
 public class User {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( columnDefinition = "TINYINT")
     private Integer id;
+
+    @Column(length = 125)
+    @Size(max = 125, message = "Username should be maximum 125 characters")
     @NotBlank(message = "Username is mandatory")
     private String username;
+
+    @Column(length = 125)
+    @Size(max = 125, message = "Password should be maximum 125 characters")
     @NotBlank(message = "Password is mandatory")
     private String password;
+
+    @Column(length = 125)
+    @Size(max = 125, message = "FullName should be maximum 125 characters")
     @NotBlank(message = "FullName is mandatory")
     private String fullname;
+
+    @Column(length = 125)
+    @Size(max = 125, message = "Role should be maximum 125 characters")
     @NotBlank(message = "Role is mandatory")
     private String role;
 

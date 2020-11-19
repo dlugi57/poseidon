@@ -1,5 +1,6 @@
 package com.web.poseidon.domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
-@NoArgsConstructor
+@Data
 @Getter
 @Setter
 @Entity
@@ -20,7 +21,7 @@ public class Rating {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id", columnDefinition = "TINYINT")
+    @Column(columnDefinition = "TINYINT")
     Integer id;
 
     @Column(length = 125)

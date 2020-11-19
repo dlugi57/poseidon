@@ -1,5 +1,6 @@
 package com.web.poseidon.domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,17 +10,17 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
+@Data
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "RuleName")
 public class RuleName {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id", columnDefinition = "TINYINT")
+    @Column(columnDefinition = "TINYINT")
     Integer id;
 
 

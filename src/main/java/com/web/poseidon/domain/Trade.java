@@ -13,14 +13,13 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Entity
-@Table(name = "Trade")
 public class Trade {
 
     @Id
     @NotNull
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TradeId", columnDefinition = "TINYINT")
+    @Column( columnDefinition = "TINYINT")
     Integer tradeId;
 
     @Column(length = 30)

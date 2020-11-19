@@ -1,20 +1,20 @@
 package com.web.poseidon.domain;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "BidList")
+@Table(name = "bid_list")
 public class BidList {
 
     @Id
@@ -33,6 +33,11 @@ public class BidList {
     @NotNull
     @Size(max = 30, message = "Type should be maximum 30 characters")
     String type;
+
+    Double bidQuantity;
+    Double askQuantity;
+    Double bid;
+    Double ask;
 
     @Size(max = 125, message = "Benchmark should be maximum 125 characters")
     @Column(length = 125)
