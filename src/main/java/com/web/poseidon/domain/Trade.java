@@ -15,7 +15,6 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "Trade")
 public class Trade {
-    // TODO: Map columns in data table TRADE with corresponding java fields
 
     @Id
     @NotNull
