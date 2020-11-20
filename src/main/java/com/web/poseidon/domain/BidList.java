@@ -4,6 +4,7 @@ package com.web.poseidon.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
@@ -18,19 +19,21 @@ import java.sql.Timestamp;
 public class BidList {
 
     @Id
-    @NotNull
+    //@NotNull
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "TINYINT")
-    Integer BidListId;
+    Integer id;
 
     @Column(length = 30)
-    @NotNull
+    @NotNull(message = "Account is mandatory")
+    @NotBlank(message = "Account is mandatory")
     @Size(max = 30, message = "account should be maximum 30 characters")
     String account;
 
     @Column(length = 30)
-    @NotNull
+    @NotNull(message = "Type is mandatory")
+    @NotBlank(message = "Type is mandatory")
     @Size(max = 30, message = "Type should be maximum 30 characters")
     String type;
 
