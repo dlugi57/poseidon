@@ -17,25 +17,26 @@ import java.sql.Timestamp;
 @Table(name = "rating")
 public class Rating {
 
-
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "TINYINT")
     Integer id;
 
     @Column(length = 125)
-    @NotNull
+    @NotNull(message = "MoodysRating is mandatory")
+    @NotBlank(message = "MoodysRating is mandatory")
     @Size(max = 125, message = "moodysRating should be maximum 125 characters")
     String moodysRating;
 
     @Column(length = 125)
-    @NotNull
+    @NotNull(message = "SandPRating is mandatory")
+    @NotBlank(message = "SandPRating is mandatory")
     @Size(max = 125, message = "sandPRating should be maximum 125 characters")
     String sandPRating;
 
     @Column(length = 125)
-    @NotNull
+    @NotNull(message = "FitchRating is mandatory")
+    @NotBlank(message = "FitchRating is mandatory")
     @Size(max = 125, message = "fitchRating should be maximum 125 characters")
     String fitchRating;
 
