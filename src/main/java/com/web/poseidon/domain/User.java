@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 public class User {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column( columnDefinition = "TINYINT")
     private Integer id;

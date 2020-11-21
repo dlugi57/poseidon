@@ -16,8 +16,6 @@ import java.sql.Timestamp;
 public class Trade {
 
     @Id
-    @NotNull
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column( columnDefinition = "TINYINT")
     Integer tradeId;

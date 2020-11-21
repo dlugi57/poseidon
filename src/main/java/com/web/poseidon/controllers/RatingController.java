@@ -95,7 +95,7 @@ public class RatingController {
      * Update rating
      *
      * @param id     id of rating to update
-     * @param rating curvePoint object
+     * @param rating rating object
      * @param result when validation goes wrong result
      * @param model  model of view
      * @return when success list of rating if not update form
