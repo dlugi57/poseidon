@@ -11,5 +11,5 @@ insert into rating(id, fitch_rating ,moodys_rating, sandprating, order_number) v
 insert into rating(id, fitch_rating , moodys_rating, sandprating, order_number) values (20, '4', '5','2', 6);
 insert into rule_name(id, name, description, json, template, sql_str, sql_part) values (1, '1', '2', '3', '4', '5', '6');
 insert into rule_name(id, name, description, json, template, sql_str, sql_part) values (2, '7', '8', '9', '10', '11', '12');
-insert into trade(trade_id, account, type, buy_quantity) values (1, '1', '2', 3);
-insert into trade(trade_id, account, type, buy_quantity) values (2, '4', '5', 6);
+insert into trade(id, account, type, buy_quantity) values (1, '1', '2', 3);
+insert into trade(id, account, type, buy_quantity) values (2, '4', '5', 6);

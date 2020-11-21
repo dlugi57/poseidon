@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
@@ -21,13 +22,15 @@ public class Trade {
     Integer id;
 
     @Column(length = 30)
-    @NotNull
-    @Size(max = 30, message = "account should be maximum 30 characters")
+    @NotNull(message = "Account is mandatory")
+    @NotBlank(message = "Account is mandatory")
+    @Size(max = 30, message = "Account should be maximum 30 characters")
     String account;
 
     @Column(length = 30)
-    @NotNull
-    @Size(max = 30, message = "type should be maximum 30 characters")
+    @NotNull(message = "Type is mandatory")
+    @NotBlank(message = "Type is mandatory")
+    @Size(max = 30, message = "Type should be maximum 30 characters")
     String type;
     Double buyQuantity;
     Double sellQuantity;
