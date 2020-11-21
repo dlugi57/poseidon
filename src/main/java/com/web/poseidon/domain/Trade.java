@@ -18,7 +18,7 @@ public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column( columnDefinition = "TINYINT")
-    Integer tradeId;
+    Integer id;
 
     @Column(length = 30)
     @NotNull
