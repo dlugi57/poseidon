@@ -940,7 +940,7 @@ SELECT|sys.sys_config:null
     <table id="292" parent="7" name="user">
       <Engine>MyISAM</Engine>
     </table>
-    <column id="293" parent="287" name="bid_list_id">
+    <column id="293" parent="287" name="id">
       <Position>1</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
@@ -1034,7 +1034,7 @@ SELECT|sys.sys_config:null
     </column>
     <key id="315" parent="287" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>bid_list_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="316" parent="288" name="id">
