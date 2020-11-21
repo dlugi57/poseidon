@@ -16,13 +16,12 @@ import java.sql.Timestamp;
 @Table(name = "curve_point")
 public class CurvePoint {
 
-
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "TINYINT")
     Integer id;
 
+    @NotNull(message = "curveId must not be null")
     @Column(columnDefinition = "TINYINT")
     Integer curveId;
 
