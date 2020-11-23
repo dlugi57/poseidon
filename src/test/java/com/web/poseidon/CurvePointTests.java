@@ -23,7 +23,7 @@ public class CurvePointTests {
 	public void curvePointTest() {
 		CurvePoint curvePoint = new CurvePoint();
 		curvePoint.setId(10);
-
+		curvePoint.setCurveId(10);
 		curvePoint.setTerm(10d);
 		curvePoint.setValue(30d);
 
