@@ -1,8 +1,6 @@
 package com.web.poseidon.controllers;
 
-import com.web.poseidon.domain.RuleName;
 import com.web.poseidon.domain.Trade;
-import com.web.poseidon.repositories.RuleNameRepository;
 import com.web.poseidon.repositories.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,8 +36,7 @@ public class TradeController {
      * @return List trade
      */
     @RequestMapping("/trade/list")
-    public String home(Model model)
-    {
+    public String home(Model model) {
         // find all Trade, add to model
         model.addAttribute("trades", tradeRepository.findAll());
         return "trade/list";
@@ -59,7 +56,7 @@ public class TradeController {
     /**
      * Add trade
      *
-     * @param trade trade object
+     * @param trade  trade object
      * @param result when validation goes wrong result
      * @param model  model of view
      * @return when success list of trade if not add form
@@ -99,14 +96,14 @@ public class TradeController {
      * Update trade
      *
      * @param id     id of trade to update
-     * @param trade trade object
+     * @param trade  trade object
      * @param result when validation goes wrong result
      * @param model  model of view
      * @return when success list of trade if not update form
      */
     @PostMapping("/trade/update/{id}")
     public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade,
-                             BindingResult result, Model model) {
+                              BindingResult result, Model model) {
         // check required fields, if valid call service to update Trade and return Trade list
         if (result.hasErrors()) {
             return "trade/update";
@@ -131,7 +128,7 @@ public class TradeController {
         // Find Trade by Id and delete the Trade, return to Trade list
         Trade trade =
                 tradeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(
-                "Invalid trade Id:" + id));
+                        "Invalid trade Id:" + id));
         tradeRepository.delete(trade);
         model.addAttribute("trades", tradeRepository.findAll());
         return "redirect:/trade/list";

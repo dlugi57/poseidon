@@ -1,7 +1,7 @@
 package com.web.poseidon.domain;
 
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -10,17 +10,11 @@ import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Entity
-@Table(name = "bid_list")
+//@Table(name = "bid_list")
 public class BidList {
 
     @Id
-    //@NotNull
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "TINYINT")
     Integer id;

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * Bid list data manipulation
  */
 @Service
-public class BidListImpl implements BidListService{
+public class BidListImpl implements BidListService {
 
     static final Logger logger = LogManager
             .getLogger(BidListImpl.class);

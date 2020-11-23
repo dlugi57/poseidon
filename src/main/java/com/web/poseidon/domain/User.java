@@ -1,18 +1,19 @@
 package com.web.poseidon.domain;
 
+import com.web.poseidon.validators.Password;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 @Data
 @Entity
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( columnDefinition = "TINYINT")
+    @Column(columnDefinition = "TINYINT")
     private Integer id;
 
     @Column(length = 125)
@@ -20,6 +21,7 @@ public class User {
     @NotBlank(message = "Username is mandatory")
     private String username;
 
+    @Password
     @Column(length = 125)
     @Size(max = 125, message = "Password should be maximum 125 characters")
     @NotBlank(message = "Password is mandatory")
@@ -35,7 +37,7 @@ public class User {
     @NotBlank(message = "Role is mandatory")
     private String role;
 
-    public Integer getId() {
+/*    public Integer getId() {
         return id;
     }
 
@@ -73,5 +75,5 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }
+    }*/
 }

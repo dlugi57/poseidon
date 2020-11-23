@@ -1,19 +1,14 @@
 package com.web.poseidon.domain;
 
-import lombok.*;
-import org.hibernate.validator.constraints.Length;
+import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+
 @Data
-//@NoArgsConstructor
-//@RequiredArgsConstructor
-@Getter
-@Setter
 @Entity
-@Table(name = "curve_point")
+//@Table(name = "curve_point")
 public class CurvePoint {
 
     @Id

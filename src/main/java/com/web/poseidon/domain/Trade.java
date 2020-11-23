@@ -1,8 +1,6 @@
 package com.web.poseidon.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -10,15 +8,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity
 public class Trade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( columnDefinition = "TINYINT")
+    @Column(columnDefinition = "TINYINT")
     Integer id;
 
     @Column(length = 30)

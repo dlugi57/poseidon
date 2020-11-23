@@ -1,8 +1,6 @@
 package com.web.poseidon.controllers;
 
-import com.web.poseidon.domain.Rating;
 import com.web.poseidon.domain.RuleName;
-import com.web.poseidon.repositories.RatingRepository;
 import com.web.poseidon.repositories.RuleNameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,8 +36,7 @@ public class RuleNameController {
      * @return List ruleName
      */
     @RequestMapping("/ruleName/list")
-    public String home(Model model)
-    {
+    public String home(Model model) {
         // find all RuleName, add to model
         model.addAttribute("ruleNames", ruleNameRepository.findAll());
         return "ruleName/list";
@@ -60,8 +57,8 @@ public class RuleNameController {
      * Add ruleName
      *
      * @param ruleName ruleName object
-     * @param result when validation goes wrong result
-     * @param model  model of view
+     * @param result   when validation goes wrong result
+     * @param model    model of view
      * @return when success list of ruleName if not add form
      */
     @PostMapping("/ruleName/validate")
@@ -97,15 +94,15 @@ public class RuleNameController {
     /**
      * Update ruleName
      *
-     * @param id     id of rating to update
+     * @param id       id of rating to update
      * @param ruleName ruleName object
-     * @param result when validation goes wrong result
-     * @param model  model of view
+     * @param result   when validation goes wrong result
+     * @param model    model of view
      * @return when success list of ruleName if not update form
      */
     @PostMapping("/ruleName/update/{id}")
     public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName,
-                             BindingResult result, Model model) {
+                                 BindingResult result, Model model) {
         // check required fields, if valid call service to update RuleName and return RuleName list
         if (result.hasErrors()) {
             return "ruleName/update";
