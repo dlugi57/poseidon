@@ -1,7 +1,7 @@
 
 insert into user(id, fullname, username, password, role) values(1,'Administrator', 'admin', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'ADMIN');
 insert into user(id,fullname, username, password, role) values(2,'User', 'user', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'USER');
-insert into user(id,fullname, username, password, role) values(3,'test', 'test', 'test', 'ADMIN');
+insert into user(id,fullname, username, password, role) values(3,'test', 'test', '$2a$10$6uspipZGSAs16PbB9KdzxeYg7Z4wzOplsZIJzXEDBRw0e1hyrkl0O', 'ADMIN');
 
 insert into bid_list(id, account, bid_quantity, type) values(1, 'Tests1', 10, 'DescTests1');
 insert into bid_list(id, account, bid_quantity, type) values(2, 'Tests2', 10, 'DescTests2');
