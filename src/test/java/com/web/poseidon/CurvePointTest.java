@@ -3,7 +3,8 @@ package com.web.poseidon;
 import com.web.poseidon.domain.CurvePoint;
 import com.web.poseidon.repositories.CurvePointRepository;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,9 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import java.util.Optional;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
-public class CurvePointTests {
+public class CurvePointTest {
 
 	@Autowired
 	private CurvePointRepository curvePointRepository;

@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
@@ -20,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userService;
 
 
-    /**
+    /*
      * Field injection of user service
      *
      * @param userService user service
@@ -35,11 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * Set user authorization levels and global log in and out parameters
      *
      * @param http request
-     * @throws Exception
+     * @throws Exception exception
      */
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        FormLoginConfigurer<HttpSecurity> httpSecurityFormLoginConfigurer;
+        // FormLoginConfigurer<HttpSecurity> httpSecurityFormLoginConfigurer;
         // httpSecurityFormLoginConfigurer =
         http.authorizeRequests()
                 .antMatchers("/user/**").hasAnyAuthority("ADMIN")
@@ -55,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .and().exceptionHandling()
                 .accessDeniedPage("/app/error")
+
         ;
 
     }
@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * Encrypting password
      *
      * @param auth authentication credentials
-     * @throws Exception
+     * @throws Exception exception
      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -72,24 +72,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
 
-/*    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       // BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        auth.inMemoryAuthentication()
-                .withUser("springuser").password(passwordEncoder().encode("spring123")).roles("USER")
-                .and()
-                .withUser("springadmin").password(passwordEncoder().encode("admin123")).roles("ADMIN", "USER");
-    }*/
-
-/*    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }*/
-/*
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }*/
 }
 
 

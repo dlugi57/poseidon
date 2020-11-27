@@ -1,0 +1,30 @@
+/* ERROR */
+.errorShow {
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    transition: all 1s;
+    background-image: url('error.gif');
+    height: 100vh;
+    min-height: 35em;
+    overflow: hidden;
+    position: relative;
+    background-attachment: fixed;
+}
+
+.errorShadow {
+    height: 100vh;
+    background-color: #232323ab;
+}
+
+.errorContainer {
+    text-align: center;
+    padding-top: 20vh;
+    color: white;
+}
+
+#oops {
+    font-size: 5em;
+    color: white;
+    font-weight: 100;
+}

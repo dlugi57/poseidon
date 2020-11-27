@@ -3,7 +3,8 @@ package com.web.poseidon;
 import com.web.poseidon.domain.Rating;
 import com.web.poseidon.repositories.RatingRepository;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

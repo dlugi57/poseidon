@@ -3,7 +3,7 @@ package com.web.poseidon;
 import com.web.poseidon.domain.BidList;
 import com.web.poseidon.repositories.BidListRepository;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BidTests {
+public class BidListTest {
 
 	@Autowired
 	private BidListRepository bidListRepository;

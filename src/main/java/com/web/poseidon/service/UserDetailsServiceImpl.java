@@ -1,7 +1,6 @@
 package com.web.poseidon.service;
 
 import com.web.poseidon.domain.User;
-import com.web.poseidon.repositories.BidListRepository;
 import com.web.poseidon.repositories.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -39,9 +38,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     /**
      * Authorization process
-     * @param userName user name 
+     * @param userName user name
      * @return user details
-     * @throws UsernameNotFoundException
+     * @throws UsernameNotFoundException user not found
      */
     // TODO: 26/11/2020 please tell me something about this
     @Override
@@ -50,9 +49,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
 
         logger.info("User connected : " + userName + " role : " + authority);
-        UserDetails userDetails = (UserDetails)new org.springframework.security.core.userdetails.User(user.getUsername(),
-                user.getPassword(), Arrays.asList(authority));
-        return userDetails;
+/*        UserDetails userDetails = (UserDetails)new org.springframework.security.core.userdetails.User(user.getUsername(),
+                user.getPassword(), Collections.singletonList(authority));
+        return userDetails;*/
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+                user.getPassword(), Collections.singletonList(authority));
     }
 
 }
