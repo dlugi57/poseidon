@@ -45,11 +45,11 @@ public class CurveController {
     /**
      * Add curvePoint form
      *
-     * @param bid empty curvePoint object
+     * @param curvePoint empty curvePoint object
      * @return Empty form
      */
     @GetMapping("/curvePoint/add")
-    public String addBidForm(CurvePoint curvePoint) {
+    public String addCurvePointForm(CurvePoint curvePoint) {
         return "curvePoint/add";
     }
 
@@ -101,8 +101,8 @@ public class CurveController {
      * @return when success list of curvePoint if not update form
      */
     @PostMapping("/curvePoint/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
-                            BindingResult result, Model model) {
+    public String updateCurvePoint(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
+                                   BindingResult result, Model model) {
         // check required fields, if valid call service to update Curve and return Curve list
         if (result.hasErrors()) {
             return "curvePoint/update";
@@ -123,7 +123,7 @@ public class CurveController {
      * @return list of curvePoint when success
      */
     @GetMapping("/curvePoint/delete/{id}")
-    public String deleteBid(@PathVariable("id") Integer id, Model model) {
+    public String deleteCurvePoint(@PathVariable("id") Integer id, Model model) {
         // Find Curve by Id and delete the Curve, return to Curve list
         CurvePoint curvePoint = curvePointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid curvePoint Id:" + id));
