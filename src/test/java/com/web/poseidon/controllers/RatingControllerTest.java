@@ -1,8 +1,6 @@
 package com.web.poseidon.controllers;
 
-import com.web.poseidon.domain.CurvePoint;
 import com.web.poseidon.domain.Rating;
-import com.web.poseidon.repositories.CurvePointRepository;
 import com.web.poseidon.repositories.RatingRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
@@ -64,7 +61,7 @@ class RatingControllerTest {
     }
 
     @Test
-    void addRatingForm() throws Exception  {
+    void addRatingForm() throws Exception {
         //WHEN //THEN
         mockMvc.perform(get("/rating/add")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -75,7 +72,7 @@ class RatingControllerTest {
     }
 
     @Test
-    void validate()  throws Exception {
+    void validate() throws Exception {
         List<Rating> ratingLists = new ArrayList<>();
 
         //GIVEN
@@ -132,7 +129,7 @@ class RatingControllerTest {
     }
 
     @Test
-    void showUpdateForm()  throws Exception {
+    void showUpdateForm() throws Exception {
         //GIVEN
         Rating rating = new Rating();
         rating.setId(1);
@@ -153,7 +150,7 @@ class RatingControllerTest {
     }
 
     @Test
-    void updateRating() throws Exception  {
+    void updateRating() throws Exception {
         //GIVEN
         Rating rating = new Rating();
         rating.setId(1);
@@ -176,7 +173,7 @@ class RatingControllerTest {
     }
 
     @Test
-    void updateRating_InvalidBid() throws Exception {
+    void updateRating_Invalid() throws Exception {
         //GIVEN
         Rating rating = new Rating();
         rating.setId(1);
@@ -200,7 +197,7 @@ class RatingControllerTest {
     }
 
     @Test
-    void deleteRating() throws Exception  {
+    void deleteRating() throws Exception {
         //GIVEN
         Rating rating = new Rating();
         rating.setId(1);
