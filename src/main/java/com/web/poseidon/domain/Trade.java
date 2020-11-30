@@ -28,6 +28,7 @@ public class Trade {
     @NotBlank(message = "Type is mandatory")
     @Size(max = 30, message = "Type should be maximum 30 characters")
     String type;
+
     Double buyQuantity;
     Double sellQuantity;
     Double buyPrice;
