@@ -1,6 +1,6 @@
 
 insert into user(id, fullname, username, password, role) values(1,'Administrator', 'admin', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'ADMIN');
-insert into user(id,fullname, username, password, role) values(2,'User', 'user1', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'USER');
+insert into user(id,fullname, username, password, role) values(2,'User1', 'user1', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'USER');
 insert into user(id,fullname, username, password, role) values(3,'test', 'test', '$2a$10$6uspipZGSAs16PbB9KdzxeYg7Z4wzOplsZIJzXEDBRw0e1hyrkl0O', 'ADMIN');
 insert into user(id,fullname, username, password, role) values(5,'user', 'user', '$2a$10$CnodS5wdELXZicpFC2StkeM9mLml2jQd7fPCWELdp7EcrAOF6TOei', 'USER');
 
