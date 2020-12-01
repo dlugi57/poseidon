@@ -17,24 +17,11 @@ import java.util.Collections;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    //@Autowired
-    //private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     static final Logger logger = LogManager
             .getLogger(UserDetailsServiceImpl.class);
-
-    // initialize objects
-    private UserRepository userRepository;
-
-    /**
-     * Field injection of user dao
-     *
-     * @param userRepository user dao
-     */
-    @Autowired
-    public void setUserDao(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     /**
      * Authorization process
@@ -42,16 +29,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * @return user details
      * @throws UsernameNotFoundException user not found
      */
-    // TODO: 26/11/2020 please tell me something about this
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(userName);
         GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
 
         logger.info("User connected : " + userName + " role : " + authority);
-/*        UserDetails userDetails = (UserDetails)new org.springframework.security.core.userdetails.User(user.getUsername(),
-                user.getPassword(), Collections.singletonList(authority));
-        return userDetails;*/
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
                 user.getPassword(), Collections.singletonList(authority));

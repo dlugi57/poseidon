@@ -14,21 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // initialize objects
-
     @Autowired
     private UserDetailsServiceImpl userService;
-
-
-    /*
-     * Field injection of user service
-     *
-     * @param userService user service
-     */
-    // TODO: 27/11/2020 this one is not working
-/*    @Autowired
-    public void setUserService(UserDetailsServiceImpl userService) {
-        this.userService = userService;
-    }*/
 
     /**
      * Set user authorization levels and global log in and out parameters
@@ -43,8 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/user/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/*").hasAnyAuthority("ADMIN", "USER")
-                //.antMatchers("/admin").hasRole("ADMIN")
-                //.antMatchers("/user").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -53,9 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/app-logout")
                 .logoutSuccessUrl("/")
                 .and().exceptionHandling()
-                .accessDeniedPage("/app/error")
-
-        ;
+                .accessDeniedPage("/app/error");
 
     }
 
