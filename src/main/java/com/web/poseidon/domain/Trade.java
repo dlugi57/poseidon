@@ -85,5 +85,36 @@ public class Trade {
     @Size(max = 125, message = "side should be maximum 125 characters")
     String side;
 
+    public Timestamp getTradeDate() {
+        if (tradeDate == null) {
+            return null;
+        }
+        return (Timestamp) tradeDate.clone();
+    }
 
+    public void setTradeDate(Timestamp tradeDate) {
+        this.tradeDate = (Timestamp) tradeDate.clone();
+    }
+
+    public Timestamp getCreationDate() {
+        if (creationDate == null) {
+            return null;
+        }
+        return (Timestamp) creationDate.clone();
+    }
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = (Timestamp) creationDate.clone();
+    }
+
+    public Timestamp getRevisionDate() {
+        if (revisionDate == null) {
+            return null;
+        }
+        return (Timestamp) revisionDate.clone();
+    }
+
+    public void setRevisionDate(Timestamp revisionDate) {
+        this.revisionDate = (Timestamp) revisionDate.clone();
+    }
 }
