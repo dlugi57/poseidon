@@ -9,10 +9,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
-@Data
+//@Data
 @Entity
 //@Table(name = "bid_list")
 public class BidList {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,5 +91,72 @@ public class BidList {
     @Column(length = 125)
     String side;
 
+    public BidList() {
+    }
+
+    public Timestamp getBidListDate() {
+        if (bidListDate ==null){
+            return null;
+        }
+        return (Timestamp) bidListDate.clone();
+    }
+
+    public void setBidListDate(Timestamp bidListDate) {
+        this.bidListDate = (Timestamp) bidListDate.clone();
+    }
+
+    public Timestamp getCreationDate() {
+        if (creationDate ==null){
+            return null;
+        }
+        return (Timestamp) creationDate.clone();
+    }
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = (Timestamp) creationDate.clone();
+    }
+
+    public Timestamp getRevisionDate() {
+        if (revisionDate ==null){
+            return null;
+        }
+        return (Timestamp) revisionDate.clone();
+    }
+
+    public void setRevisionDate(Timestamp revisionDate) {
+        this.revisionDate = (Timestamp) revisionDate.clone();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Double getBidQuantity() {
+        return bidQuantity;
+    }
+
+    public void setBidQuantity(Double bidQuantity) {
+        this.bidQuantity = bidQuantity;
+    }
 
 }
