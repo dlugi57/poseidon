@@ -1,4 +1,4 @@
-package com.web.poseidon;
+package com.web.poseidon.dao;
 
 import com.web.poseidon.domain.Rating;
 import com.web.poseidon.repositories.RatingRepository;

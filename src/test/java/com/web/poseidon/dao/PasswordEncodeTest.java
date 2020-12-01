@@ -1,4 +1,4 @@
-package com.web.poseidon;
+package com.web.poseidon.dao;
 
 
 import org.junit.jupiter.api.Test;

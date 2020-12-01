@@ -1,5 +1,6 @@
-package com.web.poseidon;
+package com.web.poseidon.dao;
 
+import com.web.poseidon.Application;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

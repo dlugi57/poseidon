@@ -1,4 +1,4 @@
-package com.web.poseidon;
+package com.web.poseidon.dao;
 
 import com.web.poseidon.domain.BidList;
 import com.web.poseidon.repositories.BidListRepository;
