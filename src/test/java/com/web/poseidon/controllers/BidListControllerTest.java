@@ -24,9 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @SpringBootTest
-//@ExtendWith(SpringExtension.class)
-//@WebMvcTest(BidListController.class)
-// TODO: 28/11/2020 why i need to add this
 @AutoConfigureMockMvc(addFilters = false)
 class BidListControllerTest {
 
@@ -79,7 +76,7 @@ class BidListControllerTest {
 
     @Test
     void validate() throws Exception {
-        //GIVEN : Give
+        //GIVEN
         BidList bidListTest = new BidList();
 
         bidListTest.setId(1);

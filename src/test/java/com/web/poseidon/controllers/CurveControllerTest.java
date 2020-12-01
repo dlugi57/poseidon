@@ -111,10 +111,11 @@ class CurveControllerTest {
 
         //WHEN //THEN return the update page
         mockMvc.perform(post("/curvePoint/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
+                //.contentType(MediaType.APPLICATION_JSON)
+                //.accept(MediaType.APPLICATION_JSON)
                 .param("curveId", String.valueOf(incorrectCurveId)))
-                .andDo(print())
+                //.andDo(print())
+
                 .andExpect(view().name("curvePoint/add"))
                 .andExpect(status().isOk());
     }

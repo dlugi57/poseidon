@@ -1,5 +1,6 @@
 package com.web.poseidon.controllers;
 
+import com.web.poseidon.domain.User;
 import com.web.poseidon.repositories.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,17 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 class LoginControllerTest {
 
     @Autowired
@@ -24,21 +30,7 @@ class LoginControllerTest {
     private UserRepository userRepository;
 
     @Test
-    void login() throws Exception {
-        //WHEN //THEN
-        mockMvc.perform(get("/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk())
-        // .andExpect(view().name("login"))
-        ;
-    }
-
-    //@Test
-    //@AutoConfigureMockMvc(addFilters = false)
-    // TODO: 29/11/2020 how to do this?
- /*   void getAllUserArticles() throws Exception {
+    void getAllUserArticles() throws Exception {
 
         List<User> usersList = new ArrayList<>();
 
@@ -48,7 +40,7 @@ class LoginControllerTest {
         user.setUsername("testUserName");
         user.setPassword("testPassword");
         user.setFullname("testFullname");
-        user.setRole("testRole");
+        user.setRole("ADMIN");
 
         usersList.add(user);
         //WHEN
@@ -60,8 +52,8 @@ class LoginControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("user/list"));
     }
-*/
-/*    @Test
+
+    @Test
     @AutoConfigureMockMvc(addFilters = false)
     void error() throws Exception {
         //WHEN //THEN
@@ -69,8 +61,6 @@ class LoginControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().is5xxServerError())
-        // .andExpect(view().name("403"))
-        ;
-    }*/
+                .andExpect(status().is5xxServerError());
+    }
 }
