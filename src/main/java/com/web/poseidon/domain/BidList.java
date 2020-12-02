@@ -29,8 +29,13 @@ public class BidList {
     String type;
 
     Double bidQuantity;
+    @Column(length = 125)
     Double askQuantity;
+
+    @Column(length = 125)
     Double bid;
+
+    @Column(length = 125)
     Double ask;
 
     @Size(max = 125, message = "Benchmark should be maximum 125 characters")

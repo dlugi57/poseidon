@@ -92,7 +92,6 @@ class UserControllerTest {
                 .param("username", username)
                 .param("password", password)
                 .param("fullname", fullname)
-
                 .param("role", role))
                 .andDo(print())
                 .andExpect(view().name("redirect:/user/list"))

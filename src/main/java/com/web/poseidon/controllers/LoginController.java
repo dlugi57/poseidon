@@ -29,7 +29,7 @@ public class LoginController {
         return mav;
     }
 
-    @GetMapping("error")
+    @GetMapping("/error")
     public ModelAndView error() {
         ModelAndView mav = new ModelAndView();
         String errorMessage = "You are not authorized for the requested data.";
