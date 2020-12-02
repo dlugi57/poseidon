@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -22,10 +21,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
 class RatingControllerTest {
-
 
     @Autowired
     private MockMvc mockMvc;
@@ -63,9 +62,7 @@ class RatingControllerTest {
     @Test
     void addRatingForm() throws Exception {
         //WHEN //THEN
-        mockMvc.perform(get("/rating/add")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/rating/add"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("rating/add"));
@@ -89,8 +86,6 @@ class RatingControllerTest {
 
         //THEN
         mockMvc.perform(post("/rating/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("moodysRating", moodysRating)
                 .param("sandPRating", sandPRating)
                 .param("fitchRating", fitchRating))
@@ -118,8 +113,6 @@ class RatingControllerTest {
 
         //WHEN //THEN return the update page
         mockMvc.perform(post("/rating/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("moodysRating", moodysRating)
                 .param("sandPRating", sandPRating)
                 .param("fitchRating", incorrectFitchRating))
@@ -141,9 +134,7 @@ class RatingControllerTest {
         when(ratingRepository.findById(anyInt())).thenReturn(Optional.of(rating));
 
         //THEN
-        mockMvc.perform(get("/rating/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/rating/update/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("rating/update"));
@@ -162,8 +153,6 @@ class RatingControllerTest {
 
         //THEN
         mockMvc.perform(post("/rating/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("moodysRating", moodysRating)
                 .param("sandPRating", sandPRating)
                 .param("fitchRating", fitchRating))
@@ -185,8 +174,6 @@ class RatingControllerTest {
 
         //THEN
         mockMvc.perform(post("/rating/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("moodysRating", moodysRating)
                 .param("sandPRating", sandPRating)
                 .param("fitchRating", incorrectFitchRating))
@@ -209,9 +196,7 @@ class RatingControllerTest {
         when(ratingRepository.findById(anyInt())).thenReturn(Optional.of(rating));
 
         //THEN
-        mockMvc.perform(get("/rating/delete/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/rating/delete/1"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/rating/list"));

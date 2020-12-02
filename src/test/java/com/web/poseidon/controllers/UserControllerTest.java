@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -65,9 +64,7 @@ class UserControllerTest {
     @Test
     void addUserForm() throws Exception {
         //WHEN //THEN
-        mockMvc.perform(get("/user/add")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/user/add"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("user/add"));
@@ -92,8 +89,6 @@ class UserControllerTest {
 
         //THEN
         mockMvc.perform(post("/user/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("username", username)
                 .param("password", password)
                 .param("fullname", fullname)
@@ -124,8 +119,6 @@ class UserControllerTest {
 
         //WHEN //THEN return the update page
         mockMvc.perform(post("/user/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("username", username)
                 .param("password", password)
                 .param("fullname", fullname)
@@ -150,9 +143,7 @@ class UserControllerTest {
         when(userRepository.findById(anyInt())).thenReturn(Optional.of(user));
 
         //THEN
-        mockMvc.perform(get("/user/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/user/update/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("user/update"));
@@ -172,8 +163,6 @@ class UserControllerTest {
 
         //THEN
         mockMvc.perform(post("/user/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("username", username)
                 .param("password", password)
                 .param("fullname", fullname)
@@ -198,8 +187,6 @@ class UserControllerTest {
 
         //THEN
         mockMvc.perform(post("/user/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("username", username)
                 .param("password", password)
                 .param("fullname", fullname)
@@ -224,9 +211,7 @@ class UserControllerTest {
         when(userRepository.findById(anyInt())).thenReturn(Optional.of(user));
 
         //THEN
-        mockMvc.perform(get("/user/delete/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/user/delete/1"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/user/list"));

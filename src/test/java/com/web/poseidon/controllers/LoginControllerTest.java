@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -57,9 +56,7 @@ class LoginControllerTest {
     @AutoConfigureMockMvc(addFilters = false)
     void error() throws Exception {
         //WHEN //THEN
-        mockMvc.perform(get("/error")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/error"))
                 .andDo(print())
                 .andExpect(status().is5xxServerError());
     }

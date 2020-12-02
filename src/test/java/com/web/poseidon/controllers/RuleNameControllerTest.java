@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -22,10 +21,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
 class RuleNameControllerTest {
-
 
     @Autowired
     private MockMvc mockMvc;
@@ -70,9 +69,7 @@ class RuleNameControllerTest {
     @Test
     void addRuleNameForm() throws Exception {
         //WHEN //THEN
-        mockMvc.perform(get("/ruleName/add")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/ruleName/add"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("ruleName/add"));
@@ -99,8 +96,6 @@ class RuleNameControllerTest {
 
         //THEN
         mockMvc.perform(post("/ruleName/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("name", name)
                 .param("description", description)
                 .param("json", json)
@@ -134,8 +129,6 @@ class RuleNameControllerTest {
 
         //WHEN //THEN return the update page
         mockMvc.perform(post("/ruleName/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("name", name)
                 .param("description", description)
                 .param("json", json)
@@ -163,9 +156,7 @@ class RuleNameControllerTest {
         when(ruleNameRepository.findById(anyInt())).thenReturn(Optional.of(ruleName));
 
         //THEN
-        mockMvc.perform(get("/ruleName/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/ruleName/update/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("ruleName/update"));
@@ -187,8 +178,6 @@ class RuleNameControllerTest {
 
         //THEN
         mockMvc.perform(post("/ruleName/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("name", name)
                 .param("description", description)
                 .param("json", json)
@@ -216,8 +205,6 @@ class RuleNameControllerTest {
 
         //THEN
         mockMvc.perform(post("/ruleName/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("name", name)
                 .param("description", description)
                 .param("json", json)
@@ -246,9 +233,7 @@ class RuleNameControllerTest {
         when(ruleNameRepository.findById(anyInt())).thenReturn(Optional.of(ruleName));
 
         //THEN
-        mockMvc.perform(get("/ruleName/delete/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/ruleName/delete/1"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/ruleName/list"));

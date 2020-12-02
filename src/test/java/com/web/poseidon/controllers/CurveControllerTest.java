@@ -1,6 +1,5 @@
 package com.web.poseidon.controllers;
 
-import com.web.poseidon.domain.BidList;
 import com.web.poseidon.domain.CurvePoint;
 import com.web.poseidon.repositories.CurvePointRepository;
 import org.junit.jupiter.api.Test;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -62,9 +60,7 @@ class CurveControllerTest {
     @Test
     void addCurvePointForm() throws Exception {
         //WHEN //THEN
-        mockMvc.perform(get("/curvePoint/add")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/curvePoint/add"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("curvePoint/add"));
@@ -86,8 +82,6 @@ class CurveControllerTest {
 
         //THEN
         mockMvc.perform(post("/curvePoint/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("curveId", String.valueOf(curveId)))
                 .andDo(print())
                 .andExpect(view().name("redirect:/curvePoint/list"))
@@ -109,13 +103,10 @@ class CurveControllerTest {
         when(curvePointRepository.findById(anyInt())).thenReturn(Optional.of(curvePoint));
 
 
-        //WHEN //THEN return the update page
+        //WHEN //THEN
         mockMvc.perform(post("/curvePoint/validate")
-                //.contentType(MediaType.APPLICATION_JSON)
-                //.accept(MediaType.APPLICATION_JSON)
                 .param("curveId", String.valueOf(incorrectCurveId)))
-                //.andDo(print())
-
+                .andDo(print())
                 .andExpect(view().name("curvePoint/add"))
                 .andExpect(status().isOk());
     }
@@ -131,9 +122,7 @@ class CurveControllerTest {
         when(curvePointRepository.findById(anyInt())).thenReturn(Optional.of(curvePoint));
 
         //THEN
-        mockMvc.perform(get("/curvePoint/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/curvePoint/update/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("curvePoint/update"));
@@ -150,8 +139,6 @@ class CurveControllerTest {
 
         //THEN
         mockMvc.perform(post("/curvePoint/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("curveId", String.valueOf(curveId)))
                 .andDo(print())
                 .andExpect(view().name("redirect:/curvePoint/list"))
@@ -167,15 +154,12 @@ class CurveControllerTest {
         //WHEN
         when(curvePointRepository.findById(anyInt())).thenReturn(Optional.of(curvePoint));
 
-         //THEN
+        //THEN
         mockMvc.perform(post("/curvePoint/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("curveId", String.valueOf(incorrectCurveId)))
                 .andDo(print())
                 .andExpect(view().name("curvePoint/update"))
                 .andExpect(status().isOk());
-
     }
 
     @Test
@@ -189,9 +173,7 @@ class CurveControllerTest {
         when(curvePointRepository.findById(anyInt())).thenReturn(Optional.of(curvePoint));
 
         //THEN
-        mockMvc.perform(get("/curvePoint/delete/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/curvePoint/delete/1"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/curvePoint/list"));

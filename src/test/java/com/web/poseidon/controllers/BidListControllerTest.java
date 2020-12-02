@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -50,7 +49,6 @@ class BidListControllerTest {
         bidListTest.setType(type);
         bidListTest.setBidQuantity(bidQuantity);
 
-
         bidLists.add(bidListTest);
         //WHEN
         when(bidListRepository.findAll()).thenReturn(bidLists);
@@ -66,9 +64,7 @@ class BidListControllerTest {
     @Test
     void addBidForm() throws Exception {
         //WHEN //THEN
-        mockMvc.perform(get("/bidList/add")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/bidList/add"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("bidList/add"));
@@ -89,8 +85,6 @@ class BidListControllerTest {
 
         //THEN
         mockMvc.perform(post("/bidList/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("account", account)
                 .param("type", type)
                 .param("bidQuantity", String.valueOf(bidQuantity)))
@@ -115,8 +109,6 @@ class BidListControllerTest {
 
         //WHEN //THEN return the update page
         mockMvc.perform(post("/bidList/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("account", account)
                 .param("type", type)
                 .param("bidQuantity", String.valueOf(incorrectBidQuantity)))
@@ -137,9 +129,7 @@ class BidListControllerTest {
         when(bidListRepository.findById(anyInt())).thenReturn(Optional.of(bidListTest));
 
         //THEN
-        mockMvc.perform(get("/bidList/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/bidList/update/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("bidList/update"));
@@ -158,8 +148,6 @@ class BidListControllerTest {
 
         //THEN
         mockMvc.perform(post("/bidList/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("account", account)
                 .param("type", type)
                 .param("bidQuantity", String.valueOf(bidQuantity)))
@@ -179,10 +167,8 @@ class BidListControllerTest {
         //WHEN
         when(bidListRepository.findById(anyInt())).thenReturn(Optional.of(bidListTest));
 
-         //THEN
+        //THEN
         mockMvc.perform(post("/bidList/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("account", account)
                 .param("type", type)
                 .param("bidQuantity", String.valueOf(incorrectBidQuantity)))
@@ -204,10 +190,8 @@ class BidListControllerTest {
         //WHEN
         when(bidListRepository.findById(anyInt())).thenReturn(Optional.of(bidListTest));
 
-         //THEN
-        mockMvc.perform(get("/bidList/delete/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        //THEN
+        mockMvc.perform(get("/bidList/delete/1"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/bidList/list"));

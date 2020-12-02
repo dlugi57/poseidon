@@ -27,9 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-
 @WithUserDetails("test")
-//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class BidListIT {
 
     @Autowired
@@ -46,41 +44,28 @@ public class BidListIT {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
-
     static String account = "AccountTest";
     static String type = "TypeTest";
     static Double bidQuantity = 500d;
-    //static Double incorrectBidQuantity = null;
 
-    /*------------------------------ Post ------------------------------*/
-
-    /* Add validate bidList */
     @Test
     @WithUserDetails("test")
-    //@WithMockUser(authorities = "ADMIN", username = "test")
     void validateBidList() throws Exception {
 
         //GIVEN
-
-        List<BidList> bidListsBeforeAdd;
-        bidListsBeforeAdd = bidListRepository.findAll();
+        List<BidList> bidListsBeforeAdd = bidListRepository.findAll();
 
         // WHEN
-
-        //THEN
         mockMvc.perform(post("/bidList/validate")
-                // .contentType(MediaType.APPLICATION_JSON)
-                // .accept(MediaType.APPLICATION_JSON)
                 .param("account", account)
                 .param("type", type)
                 .param("bidQuantity", String.valueOf(bidQuantity)))
                 .andDo(print())
                 .andExpect(view().name("redirect:/bidList/list"))
                 .andExpect(status().is3xxRedirection());
+        List<BidList> bidListsAfterAdd = bidListRepository.findAll();
 
-        List<BidList> bidListsAfterAdd;
-        bidListsAfterAdd = bidListRepository.findAll();
-
+        //THEN
         assertEquals(bidListsAfterAdd.size(), bidListsBeforeAdd.size() + 1);
     }
 

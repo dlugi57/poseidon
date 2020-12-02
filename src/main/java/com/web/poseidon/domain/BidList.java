@@ -1,17 +1,13 @@
 package com.web.poseidon.domain;
 
 
-import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
-//@Data
 @Entity
-//@Table(name = "bid_list")
 public class BidList {
 
 
@@ -95,7 +91,7 @@ public class BidList {
     }
 
     public Timestamp getBidListDate() {
-        if (bidListDate ==null){
+        if (bidListDate == null) {
             return null;
         }
         return (Timestamp) bidListDate.clone();
@@ -106,7 +102,7 @@ public class BidList {
     }
 
     public Timestamp getCreationDate() {
-        if (creationDate ==null){
+        if (creationDate == null) {
             return null;
         }
         return (Timestamp) creationDate.clone();
@@ -117,7 +113,7 @@ public class BidList {
     }
 
     public Timestamp getRevisionDate() {
-        if (revisionDate ==null){
+        if (revisionDate == null) {
             return null;
         }
         return (Timestamp) revisionDate.clone();

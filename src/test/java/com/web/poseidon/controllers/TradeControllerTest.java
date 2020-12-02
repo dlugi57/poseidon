@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
 class TradeControllerTest {
@@ -60,9 +60,7 @@ class TradeControllerTest {
     @Test
     void addTradeForm() throws Exception {
         //WHEN //THEN
-        mockMvc.perform(get("/trade/add")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/trade/add"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("trade/add"));
@@ -85,8 +83,6 @@ class TradeControllerTest {
 
         //THEN
         mockMvc.perform(post("/trade/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("account", account)
                 .param("type", type))
                 .andDo(print())
@@ -112,8 +108,6 @@ class TradeControllerTest {
 
         //WHEN //THEN return the update page
         mockMvc.perform(post("/trade/validate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("account", account)
                 .param("type", incorrectType))
                 .andDo(print())
@@ -133,9 +127,7 @@ class TradeControllerTest {
         when(tradeRepository.findById(anyInt())).thenReturn(Optional.of(trade));
 
         //THEN
-        mockMvc.perform(get("/trade/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/trade/update/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("trade/update"));
@@ -153,8 +145,6 @@ class TradeControllerTest {
 
         //THEN
         mockMvc.perform(post("/trade/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("type", type)
                 .param("account", account))
                 .andDo(print())
@@ -174,8 +164,6 @@ class TradeControllerTest {
 
         //THEN
         mockMvc.perform(post("/trade/update/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
                 .param("type", incorrectType)
                 .param("account", account))
                 .andDo(print())
@@ -196,9 +184,7 @@ class TradeControllerTest {
         when(tradeRepository.findById(anyInt())).thenReturn(Optional.of(trade));
 
         //THEN
-        mockMvc.perform(get("/trade/delete/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/trade/delete/1"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/trade/list"));
