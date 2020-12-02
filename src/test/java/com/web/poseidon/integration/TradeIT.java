@@ -1,7 +1,9 @@
 package com.web.poseidon.integration;
 
-import com.web.poseidon.domain.RuleName;
-import com.web.poseidon.repositories.RuleNameRepository;
+import com.web.poseidon.domain.BidList;
+import com.web.poseidon.domain.Trade;
+import com.web.poseidon.repositories.BidListRepository;
+import com.web.poseidon.repositories.TradeRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -28,10 +30,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @WithUserDetails("test")
-public class RuleNameIT {
+public class TradeIT {
 
     @Autowired
-    private RuleNameRepository ruleNameRepository;
+    private TradeRepository tradeRepository;
 
     @Autowired
     private MockMvc mockMvc;
@@ -44,35 +46,27 @@ public class RuleNameIT {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
-    static String name = "name";
-    static String description = "description";
-    static String json = "json";
-    static String template = "template";
-    static String sqlStr = "sqlStr";
-    static String sqlPart = "sqlPart";
+    static String account = "account";
+    static String type = "type";
 
     @Test
     @WithUserDetails("test")
-    void validateRuleName() throws Exception {
+    void validateBidList() throws Exception {
 
         //GIVEN
-        List<RuleName> ruleNameListsBeforeAdd = ruleNameRepository.findAll();
+        List<Trade> tradeBeforeAdd = tradeRepository.findAll();
 
         // WHEN
-        mockMvc.perform(post("/ruleName/validate")
-                .param("name", name)
-                .param("description", description)
-                .param("json", json)
-                .param("template", template)
-                .param("sqlStr", sqlStr)
-                .param("sqlPart", sqlPart))
+        mockMvc.perform(post("/trade/validate")
+                .param("account", account)
+                .param("type", type))
                 .andDo(print())
-                .andExpect(view().name("redirect:/ruleName/list"))
+                .andExpect(view().name("redirect:/trade/list"))
                 .andExpect(status().is3xxRedirection());
-        List<RuleName> ruleNameListsAfterAdd = ruleNameRepository.findAll();
+        List<Trade> tradeAfterAdd = tradeRepository.findAll();
 
         //THEN
-        assertEquals(ruleNameListsAfterAdd.size(), ruleNameListsBeforeAdd.size() + 1);
+        assertEquals(tradeAfterAdd.size(), tradeBeforeAdd.size() + 1);
     }
 
 }
