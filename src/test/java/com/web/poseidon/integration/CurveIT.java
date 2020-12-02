@@ -48,7 +48,7 @@ public class CurveIT {
 
     @Test
     @WithUserDetails("test")
-    void validateBidList() throws Exception {
+    void validateCurvePoint() throws Exception {
 
         //GIVEN
         List<CurvePoint> curvePointLists = curvePointRepository.findAll();
