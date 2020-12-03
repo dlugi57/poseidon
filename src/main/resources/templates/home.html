@@ -1,21 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+ lang="ENG">
 
-<bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
-
-    <property name="additionalDialects">
-        <set>
-            <!-- Note the package would change to 'springsecurity[3|4]' if you are using that version -->
-            <bean class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect"/>
-        </set>
-    </property>
-
-</bean>
 <head>
     <title> Spring Boot </title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <!--<link rel="stylesheet" href="/css/styles.css"/>-->
 </head>
@@ -31,21 +21,12 @@
             <a href="/trade/list">Trade</a>&nbsp;|&nbsp;
             <a href="/ruleName/list">Rule</a>&nbsp;|&nbsp;
             <a href="/login">Login</a>&nbsp;|&nbsp;
-            <a href="/user/list">User management</a>&nbsp;|&nbsp;
-
-            <div sec:authorize="hasRole('ADMIN')">
-                //show the save button
-            </div>
-            <div sec:authorize="hasRole('USER')">
-                //show the view button
-            </div>
-<!--            <div th:text="${#authentication.name}">
-                The value of the "name" property of the authentication object should appear here.
-            </div>-->
+            <a href="/user/list">User management</a>
 
         </div>
         <div class="col-6 text-right">
-            Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
+            Logged in user: <b th:inline="text" class="user">
+            [[${#httpServletRequest.remoteUser}]] </b>
             <form th:action="@{/app-logout}" method="POST">
                 <input type="submit" value="Logout"/>
             </form>
