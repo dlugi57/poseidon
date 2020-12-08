@@ -3,12 +3,14 @@ package com.web.poseidon.controllers;
 import com.web.poseidon.domain.CurvePoint;
 import com.web.poseidon.repositories.CurvePointRepository;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,12 +28,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 class CurveControllerTest {
 
+    static String user = "test";
     static Integer curveId = 1;
     static Integer incorrectCurveId = null;
 
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Mock
+    private Principal principal;
 
     @MockBean
     private CurvePointRepository curvePointRepository;
@@ -47,10 +53,11 @@ class CurveControllerTest {
 
         curvePointLists.add(curvePoint);
         //WHEN
+        when(principal.getName()).thenReturn(user);
         when(curvePointRepository.findAll()).thenReturn(curvePointLists);
 
         //THEN
-        mockMvc.perform(get("/curvePoint/list"))
+        mockMvc.perform(get("/curvePoint/list").principal(principal))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("curvePoint/list"));

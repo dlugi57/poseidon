@@ -10,10 +10,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("app")
 public class LoginController {
-
+    // initialize repository
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Login page
+     *
+     * @return login page
+     */
     @GetMapping("login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
@@ -21,6 +26,11 @@ public class LoginController {
         return mav;
     }
 
+    /**
+     * User list passed by secure mode
+     *
+     * @return user list page
+     */
     @GetMapping("secure/article-details")
     public ModelAndView getAllUserArticles() {
         ModelAndView mav = new ModelAndView();
@@ -29,6 +39,11 @@ public class LoginController {
         return mav;
     }
 
+    /**
+     * Error page
+     *
+     * @return custom error page
+     */
     @GetMapping("/error")
     public ModelAndView error() {
         ModelAndView mav = new ModelAndView();

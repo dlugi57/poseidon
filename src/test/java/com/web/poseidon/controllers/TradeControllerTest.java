@@ -3,12 +3,14 @@ package com.web.poseidon.controllers;
 import com.web.poseidon.domain.Trade;
 import com.web.poseidon.repositories.TradeRepository;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,9 +31,13 @@ class TradeControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Mock
+    private Principal principal;
+
     @MockBean
     private TradeRepository tradeRepository;
 
+    static String user = "test";
     static String account = "account";
     static String type = "type";
     static String incorrectType = null;
@@ -48,10 +54,11 @@ class TradeControllerTest {
 
         tradeLists.add(trade);
         //WHEN
+        when(principal.getName()).thenReturn(user);
         when(tradeRepository.findAll()).thenReturn(tradeLists);
 
         //THEN
-        mockMvc.perform(get("/trade/list"))
+        mockMvc.perform(get("/trade/list").principal(principal))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("trade/list"));

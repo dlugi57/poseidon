@@ -3,12 +3,14 @@ package com.web.poseidon.controllers;
 import com.web.poseidon.domain.Rating;
 import com.web.poseidon.repositories.RatingRepository;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,9 +31,13 @@ class RatingControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Mock
+    private Principal principal;
+
     @MockBean
     private RatingRepository ratingRepository;
 
+    static String user = "test";
     static String moodysRating = "testModys";
     static String sandPRating = "testPR";
     static String fitchRating = "testFitch";
@@ -50,10 +56,11 @@ class RatingControllerTest {
 
         ratingLists.add(rating);
         //WHEN
+        when(principal.getName()).thenReturn(user);
         when(ratingRepository.findAll()).thenReturn(ratingLists);
 
         //THEN
-        mockMvc.perform(get("/rating/list"))
+        mockMvc.perform(get("/rating/list").principal(principal))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("rating/list"));

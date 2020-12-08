@@ -3,12 +3,14 @@ package com.web.poseidon.controllers;
 import com.web.poseidon.domain.RuleName;
 import com.web.poseidon.repositories.RuleNameRepository;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,9 +31,13 @@ class RuleNameControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Mock
+    private Principal principal;
+
     @MockBean
     private RuleNameRepository ruleNameRepository;
 
+    static String user = "test";
     static String name = "name";
     static String description = "description";
     static String json = "json";
@@ -45,6 +51,7 @@ class RuleNameControllerTest {
     void home() throws Exception {
         List<RuleName> ruleNameLists = new ArrayList<>();
 
+
         //GIVEN
         RuleName ruleName = new RuleName();
         ruleName.setId(1);
@@ -57,10 +64,11 @@ class RuleNameControllerTest {
 
         ruleNameLists.add(ruleName);
         //WHEN
+        when(principal.getName()).thenReturn(user);
         when(ruleNameRepository.findAll()).thenReturn(ruleNameLists);
 
         //THEN
-        mockMvc.perform(get("/ruleName/list"))
+        mockMvc.perform(get("/ruleName/list").principal(principal))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("ruleName/list"));

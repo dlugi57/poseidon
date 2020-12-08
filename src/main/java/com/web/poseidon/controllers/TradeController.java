@@ -2,6 +2,8 @@ package com.web.poseidon.controllers;
 
 import com.web.poseidon.domain.Trade;
 import com.web.poseidon.repositories.TradeRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 @Controller
 public class TradeController {
+
+    static final Logger logger = LogManager
+            .getLogger(TradeController.class);
 
     // initialize objects
     TradeRepository tradeRepository;
@@ -33,10 +42,15 @@ public class TradeController {
      * Get all trade
      *
      * @param model model of view
+     * @param principal get user info
      * @return List trade
      */
     @RequestMapping("/trade/list")
-    public String home(Model model) {
+    public String home(Model model, Principal principal) {
+        DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        logger.info((principal.getName() + " is connected at "
+                + format.format(calendar.getTime())));
         // find all Trade, add to model
         model.addAttribute("trades", tradeRepository.findAll());
         return "trade/list";

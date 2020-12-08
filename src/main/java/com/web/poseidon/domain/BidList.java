@@ -10,7 +10,6 @@ import java.sql.Timestamp;
 @Entity
 public class BidList {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "TINYINT")
